@@ -74,12 +74,64 @@ const signupForm = document.querySelector('#client-signup');
 const showSignup = document.querySelector('#show-signup');
 const showLogin = document.querySelector('#show-login');
 const signupStatus = document.querySelector('#signup-status');
+const projectProgress = document.querySelector('#project-progress');
 
-clientLogin.addEventListener('submit', (event) => {
+const sendAuthRequest = async (url, payload) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+  return data;
+};
+
+const loadProjects = async () => {
+  const response = await fetch('/api/projects');
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || 'Unable to load projects.');
+  projectProgress.replaceChildren();
+  if (!data.projects.length) {
+    const emptyState = document.createElement('p');
+    emptyState.className = 'login-status';
+    emptyState.textContent = 'No projects have been added to this account yet.';
+    projectProgress.append(emptyState);
+    return;
+  }
+  data.projects.forEach((project) => {
+    const projectItem = document.createElement('div');
+    const meta = document.createElement('div');
+    const name = document.createElement('strong');
+    const progressLabel = document.createElement('span');
+    const track = document.createElement('div');
+    const progressBar = document.createElement('span');
+    const status = document.createElement('small');
+    meta.className = 'project-meta';
+    track.className = 'progress-track';
+    name.textContent = project.name;
+    progressLabel.textContent = `${project.progress}%`;
+    progressBar.style.width = `${project.progress}%`;
+    status.textContent = project.statusLabel;
+    meta.append(name, progressLabel);
+    track.append(progressBar);
+    projectItem.append(meta, track, status);
+    projectProgress.append(projectItem);
+  });
+};
+
+clientLogin.addEventListener('submit', async (event) => {
   event.preventDefault();
-  clientLogin.hidden = true;
-  clientDashboard.hidden = false;
-  loginStatus.textContent = '';
+  loginStatus.textContent = 'Signing in...';
+  try {
+    await sendAuthRequest('/api/auth/login', Object.fromEntries(new FormData(clientLogin)));
+    await loadProjects();
+    clientLogin.hidden = true;
+    clientDashboard.hidden = false;
+    loginStatus.textContent = '';
+  } catch (error) {
+    loginStatus.textContent = error.message;
+  }
 });
 
 dashboardBack.addEventListener('click', () => {
@@ -101,7 +153,16 @@ showLogin.addEventListener('click', () => {
   clientLogin.querySelector('input').focus();
 });
 
-signupForm.addEventListener('submit', (event) => {
+signupForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  signupStatus.textContent = 'Request noted for preview. A secure invite flow will connect here.';
+  signupStatus.textContent = 'Creating account...';
+  try {
+    await sendAuthRequest('/api/auth/signup', Object.fromEntries(new FormData(signupForm)));
+    await loadProjects();
+    signupForm.hidden = true;
+    clientDashboard.hidden = false;
+    signupStatus.textContent = '';
+  } catch (error) {
+    signupStatus.textContent = error.message;
+  }
 });
