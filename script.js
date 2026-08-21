@@ -65,3 +65,43 @@ if (tiltCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) 
     tiltCard.style.transform = 'perspective(900px) rotate(3deg)';
   });
 }
+
+const clientLogin = document.querySelector('#client-login');
+const clientDashboard = document.querySelector('#client-dashboard');
+const loginStatus = document.querySelector('#login-status');
+const dashboardBack = document.querySelector('#dashboard-back');
+const signupForm = document.querySelector('#client-signup');
+const showSignup = document.querySelector('#show-signup');
+const showLogin = document.querySelector('#show-login');
+const signupStatus = document.querySelector('#signup-status');
+
+clientLogin.addEventListener('submit', (event) => {
+  event.preventDefault();
+  clientLogin.hidden = true;
+  clientDashboard.hidden = false;
+  loginStatus.textContent = '';
+});
+
+dashboardBack.addEventListener('click', () => {
+  clientDashboard.hidden = true;
+  clientLogin.hidden = false;
+  clientLogin.reset();
+  clientLogin.querySelector('input').focus();
+});
+
+showSignup.addEventListener('click', () => {
+  clientLogin.hidden = true;
+  signupForm.hidden = false;
+  signupForm.querySelector('input').focus();
+});
+
+showLogin.addEventListener('click', () => {
+  signupForm.hidden = true;
+  clientLogin.hidden = false;
+  clientLogin.querySelector('input').focus();
+});
+
+signupForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  signupStatus.textContent = 'Request noted for preview. A secure invite flow will connect here.';
+});

@@ -26,6 +26,7 @@
         <a href="#about">About</a>
         <a href="#stack">Stack</a>
         <a href="#work">Work</a>
+        <a href="#portal">Client portal</a>
         <a href="#contact">Contact</a>
       </nav>
       <a class="header-cta" href="mailto:nithinsamuel1278@gmail.com">Let's talk <span>↗</span></a>
@@ -35,7 +36,8 @@
       <section class="hero section-pad" aria-labelledby="hero-title">
         <div class="hero-copy reveal">
           <p class="eyebrow"><span class="status-dot"></span> Available for creative collaborations</p>
-          <h1 id="hero-title"><span class="name-line">Nithin Samuel</span><br><em>Web Developer</em></h1>
+          <h1 id="hero-title"><span class="name-line">Nithin Samuel</span><br><em class="highlight-coral">Web Developer</em></h1>
+          <p class="hero-lead">I build <span class="highlight-blue">useful interfaces</span> for people with real things to do.</p>
           <p class="hero-summary">I’m a BTech student crafting fast, responsive, and easy-to-use websites from Chennai, with a passion for modern digital experiences.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#work">View my work <span>↓</span></a>
@@ -65,6 +67,12 @@
           <div class="about-text reveal reveal-delay">
             <p>I'm currently studying BTech at <strong>Kalvium × St. Joseph's University</strong>, where I turn curiosity into working interfaces and useful digital tools.</p>
             <p>I enjoy working across frontend technologies, programming languages, and databases. My goal is simple: make the web feel more thoughtful, one project at a time.</p>
+            <p>When I am not writing code, I am usually exploring a new idea, refining a small interaction, or learning how technology can make everyday work a little clearer.</p>
+            <div class="about-facts" aria-label="A few facts about Nithin">
+              <div><strong class="highlight-gold">01</strong><span>Based in<br>Chennai</span></div>
+              <div><strong class="highlight-mint">02</strong><span>Currently<br>learning</span></div>
+              <div><strong class="highlight-coral">03</strong><span>Always<br>building</span></div>
+            </div>
             <a class="text-link" href="https://github.com/nithinsamuel1278-bit" target="_blank" rel="noreferrer">More about my work <span>↗</span></a>
           </div>
         </div>
@@ -97,8 +105,50 @@
         </div>
       </section>
 
+      <section class="portal section-pad" id="portal" aria-labelledby="portal-title">
+        <div class="section-label reveal">04 <span>Client portal</span></div>
+        <div class="portal-layout">
+          <div class="portal-intro reveal">
+            <p class="eyebrow"><span class="status-dot"></span> Private project space</p>
+            <h2 class="section-title" id="portal-title">A clearer view of<br><span>what we're building.</span></h2>
+            <p>Clients can use this space to check project milestones, review current progress, and stay close to the next steps.</p>
+            <p class="portal-note">Preview mode for now. Secure accounts and live project data can be connected to a backend when the portal goes live.</p>
+          </div>
+          <div class="portal-panel reveal reveal-delay">
+            <form class="login-form" id="client-login">
+              <div class="portal-panel-heading"><span>Client access</span><span class="portal-lock">01 / secure area</span></div>
+              <label for="client-email">Email address</label>
+              <input id="client-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+              <label for="client-password">Password</label>
+              <input id="client-password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+              <button class="button button-primary" type="submit">Open dashboard <span>↗</span></button>
+              <p class="auth-switch">New client? <button class="text-link" id="show-signup" type="button">Create an account <span>↗</span></button></p>
+              <p class="login-status" id="login-status" role="status" aria-live="polite"></p>
+            </form>
+            <form class="login-form signup-form" id="client-signup" hidden>
+              <div class="portal-panel-heading"><span>Create account</span><span class="portal-lock">02 / get started</span></div>
+              <label for="signup-name">Your name</label>
+              <input id="signup-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required>
+              <label for="signup-email">Email address</label>
+              <input id="signup-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+              <label for="signup-password">Create password</label>
+              <input id="signup-password" name="password" type="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+              <button class="button button-primary" type="submit">Request access <span>↗</span></button>
+              <p class="auth-switch">Already have access? <button class="text-link" id="show-login" type="button">Sign in <span>↗</span></button></p>
+              <p class="login-status" id="signup-status" role="status" aria-live="polite"></p>
+            </form>
+            <div class="client-dashboard" id="client-dashboard" hidden>
+              <div class="portal-panel-heading"><span>Project overview</span><span class="portal-live"><i></i> Live preview</span></div>
+              <div class="dashboard-welcome"><p class="work-kicker">Welcome back</p><h3>Your projects, at a glance.</h3></div>
+              <div class="project-progress"><div><div class="project-meta"><strong>Portfolio website</strong><span>72%</span></div><div class="progress-track"><span style="width: 72%"></span></div><small>Building interactions</small></div><div><div class="project-meta"><strong>MySQL project setup</strong><span>38%</span></div><div class="progress-track"><span style="width: 38%"></span></div><small>Planning data structure</small></div></div>
+              <button class="text-link dashboard-back" id="dashboard-back" type="button">Back to sign in <span>↗</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
-        <div class="section-label reveal">04 <span>Contact</span></div>
+        <div class="section-label reveal">05 <span>Contact</span></div>
         <div class="contact-content reveal"><p class="eyebrow">Have an idea?</p><h2 id="contact-title">Let's make it<br><em>real.</em></h2><a class="email-link" href="mailto:nithinsamuel1278@gmail.com">nithinsamuel1278@gmail.com <span>↗</span></a></div>
         <div class="contact-details reveal reveal-delay"><a href="tel:+918045678923">+91 80456 78923</a><span>Chennai, India</span><div class="socials"><a href="https://www.linkedin.com/in/nithin-samuel-49271942b/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/nithinsamuel1278-bit" target="_blank" rel="noreferrer">GitHub ↗</a></div></div>
       </section>
